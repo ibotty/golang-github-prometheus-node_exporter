@@ -37,12 +37,12 @@
 # https://github.com/prometheus/node_exporter
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 %global import_path     %{provider_prefix}
-%global commit          5a07f4173d97fa0dd307db5bd3c2e6da26a4b16e
+%global commit          0e60bb8e005c638605e59ac3f307e3d47e891a9f
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           golang-%{provider}-%{project}-%{repo}
-Version:        0.14.0_rc1
-Release:        7%{?dist}
+Version:        0.14.0_rc2
+Release:        0%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
