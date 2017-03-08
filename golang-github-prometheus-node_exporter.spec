@@ -21,7 +21,7 @@
 # Run tests in check section
 %global with_check 1
 # Generate unit-test rpm
-%global with_unit_test 1
+%global with_unit_test 0
 
 %if 0%{?with_debug}
 %global _dwz_low_mem_die_limit 0
