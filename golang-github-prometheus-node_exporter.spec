@@ -53,8 +53,6 @@ ExclusiveArch:  %{?go_arches:%{go_arches}}%{!?go_arches:%{ix86} x86_64 aarch64 %
 # If go_compiler is not set to 1, there is no virtual provide. Use golang instead.
 BuildRequires:  %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 
-
-
 %description
 %{summary}
 
@@ -144,6 +142,11 @@ export GOPATH=$(pwd)/_build:%{gopath}
 # tests from the BUILDROOT dir.
 ln -s ./ ./vendor/src # ./vendor/src -> ./vendor
 export GOPATH=$(pwd)/_build:$(pwd)/vendor:%{gopath}
+%endif
+
+%if ! 0%{?gobuild:1}
+function _gobuild { go build -a -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n')" -v -x "$@"; }
+%global gobuild _gobuild
 %endif
 
 %gobuild -o _build/node_exporter %{provider_prefix}
