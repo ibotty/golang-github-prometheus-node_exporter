@@ -41,8 +41,8 @@
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           golang-%{provider}-%{project}-%{repo}
-Version:        0.14.0-rc.1
-Release:        1%{?dist}
+Version:        0.14.0_rc1
+Release:        2%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -211,6 +211,7 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 %doc README.md MAINTAINERS.md CONTRIBUTING.md CHANGELOG.md
 %endif
 
-%changelog* Wed Mar 08 2017 Gofed user - 0.14.0-rc.1-1
-- First package for Fedora
+%changelog
+* Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-2
+- new package built with tito
 
