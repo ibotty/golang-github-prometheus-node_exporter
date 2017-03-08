@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.14.0_rc1
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -217,6 +217,10 @@ getent passwd node_exporter > /dev/null || \
             -c "Prometheus node exporter"
 
 %changelog
+* Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-6
+- install text_collector_examples (tob@butter.sh)
+- don't run tests on build (tob@butter.sh)
+
 * Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-5
 - build with bundled deps (tob@butter.sh)
 
