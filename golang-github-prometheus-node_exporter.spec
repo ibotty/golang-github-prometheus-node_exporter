@@ -200,16 +200,21 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 
 %if 0%{?with_devel}
 %files devel -f devel.file-list
-%license LICENSE
-%doc README.md MAINTAINERS.md CONTRIBUTING.md CHANGELOG.md
 %dir %{gopath}/src/%{provider}.%{provider_tld}/%{project}
 %endif
 
 %if 0%{?with_unit_test} && 0%{?with_devel}
 %files unit-test-devel -f unit-test-devel.file-list
-%license LICENSE
-%doc README.md MAINTAINERS.md CONTRIBUTING.md CHANGELOG.md
 %endif
+
+%license LICENSE
+%doc README.md MAINTAINERS.md CONTRIBUTING.md CHANGELOG.md text_collector_examples
+
+%pre
+getent group node_exporter > /dev/null || groupadd -r node_exporter
+getent passwd node_exporter > /dev/null || \
+    useradd -rg node_exporter -d /var/lib/node_exporter -s /sbin/nologin \
+            -c "Prometheus node exporter"
 
 %changelog
 * Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-5
