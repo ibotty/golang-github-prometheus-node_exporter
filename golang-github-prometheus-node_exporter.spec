@@ -15,7 +15,7 @@
 # Generate devel rpm
 %global with_devel 1
 # Build project from bundled dependencies
-%global with_bundled 0
+%global with_bundled 1
 # Build with debug info rpm
 %global with_debug 0
 # Run tests in check section
