@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.14.0_rc1
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -240,6 +240,9 @@ getent passwd node_exporter > /dev/null || \
             -c "Prometheus node exporter"
 
 %changelog
+* Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-8
+- don't use git annex (tob@butter.sh)
+
 * Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-7
 - actually build (tob@butter.sh)
 
