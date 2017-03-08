@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.14.0_rc2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -243,6 +243,9 @@ getent passwd node_exporter > /dev/null || \
             -c "Prometheus node exporter"
 
 %changelog
+* Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc2-2
+- define gobuild macro when not defined (tob@butter.sh)
+
 * Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc2-1
 - bump version (tob@butter.sh)
 - don't use git annex (tob@butter.sh)
