@@ -248,6 +248,8 @@ getent passwd node_exporter > /dev/null || \
 
 * Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc2-1
 - bump version (tob@butter.sh)
+
+* Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-8
 - don't use git annex (tob@butter.sh)
 
 * Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-7
