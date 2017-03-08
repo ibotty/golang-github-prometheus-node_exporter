@@ -132,7 +132,29 @@ providing packages with %{import_path} prefix.
 %setup -q -n %{repo}-%{commit}
 
 %build
+mkdir -p _build/src/github.com/prometheus
+ln -s $(pwd) _build/src/github.com/prometheus/node_exporter
+
+%if ! 0%{?with_bundled}
+export GOPATH=$(pwd)/_build:%{gopath}
+%else
+# Since we aren't packaging up the vendor directory we need to link
+# back to it somehow. Hack it up so that we can add the vendor
+# directory from BUILD dir as a gopath to be searched when executing
+# tests from the BUILDROOT dir.
+ln -s ./ ./vendor/src # ./vendor/src -> ./vendor
+export GOPATH=$(pwd)/_build:$(pwd)/vendor:%{gopath}
+%endif
+
+%gobuild -o _build/node_exporter %{provider_prefix}
+
 %install
+install -d -p   %{buildroot}%{_bindir} \
+                %{buildroot}%{_defaultdocdir}/node_exporter
+install -p -m 0755 ./_build/node_exporter %{buildroot}%{_bindir}/node_exporter
+#cp -pav text_collector_examples %{buildroot}%{_defaultdocdir}/node_exporter
+#cp -pav *.md %{buildroot}%{_defaultdocdir}/node_exporter
+
 # source codes for building projects
 %if 0%{?with_devel}
 install -d -p %{buildroot}/%{gopath}/src/%{import_path}/
@@ -197,7 +219,6 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 #define license tag if not already defined
 %{!?_licensedir:%global license %doc}
 
-
 %if 0%{?with_devel}
 %files devel -f devel.file-list
 %dir %{gopath}/src/%{provider}.%{provider_tld}/%{project}
@@ -207,8 +228,10 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 %files unit-test-devel -f unit-test-devel.file-list
 %endif
 
+%files
 %license LICENSE
-%doc README.md MAINTAINERS.md CONTRIBUTING.md CHANGELOG.md text_collector_examples
+%doc *.md text_collector_examples
+%{_bindir}/*
 
 %pre
 getent group node_exporter > /dev/null || groupadd -r node_exporter
