@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.14.0_rc1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -212,6 +212,11 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 %endif
 
 %changelog
+* Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-4
+- add node_exporter source (tob@butter.sh)
+- delete git-annex pointer (tob@butter.sh)
+- add source file (tob@butter.sh)
+
 * Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-3
 - use git annex to download source (tob@butter.sh)
 
