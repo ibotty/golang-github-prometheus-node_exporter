@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.14.0_rc1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -212,6 +212,9 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 %endif
 
 %changelog
+* Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-3
+- use git annex to download source (tob@butter.sh)
+
 * Wed Mar 08 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc1-2
 - new package built with tito
 
