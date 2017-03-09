@@ -47,9 +47,12 @@ Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
 Source0:        https://%{provider_prefix}/archive/%{commit}/%{repo}-%{shortcommit}.tar.gz
+Source1:        sysconfig.node_exporter
+Source2:        node_exporter.service
 
 Provides:      node_exporter = %{version}-%{release}
 
+BuildRequires:  systemd
 # e.g. el6 has ppc64 arch without gcc-go, so EA tag is required
 ExclusiveArch:  %{?go_arches:%{go_arches}}%{!?go_arches:%{ix86} x86_64 aarch64 %{arm}}
 # If go_compiler is not set to 1, there is no virtual provide. Use golang instead.
@@ -132,8 +135,8 @@ providing packages with %{import_path} prefix.
 %setup -q -n %{repo}-%{commit}
 
 %build
-mkdir -p _build/src/github.com/prometheus
-ln -s $(pwd) _build/src/github.com/prometheus/node_exporter
+mkdir -p _build/src/%{provider}.%{provider_tld}/%{project}
+ln -s $(pwd) _build/src/%{provider_prefix}
 
 %if ! 0%{?with_bundled}
 export GOPATH=$(pwd)/_build:%{gopath}
@@ -155,10 +158,14 @@ function _gobuild { go build -a -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -
 
 %install
 install -d -p   %{buildroot}%{_bindir} \
-                %{buildroot}%{_defaultdocdir}/node_exporter
+                %{buildroot}%{_defaultdocdir}/node_exporter \
+                %{buildroot}%{_sysconfdir}/sysconfig \
+                %{buildroot}%{_unitdir}
+
+install -d -m 0644 sysconfig.node_exporter %{buildroot}%{_sysconfdir}/sysconfig/node_exporter
+install -d -m 0644 node_exporter.service %{buildroot}%{_unitdir}/node_exporter.service
+
 install -p -m 0755 ./_build/node_exporter %{buildroot}%{_bindir}/node_exporter
-#cp -pav text_collector_examples %{buildroot}%{_defaultdocdir}/node_exporter
-#cp -pav *.md %{buildroot}%{_defaultdocdir}/node_exporter
 
 # source codes for building projects
 %if 0%{?with_devel}
@@ -234,6 +241,8 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 %endif
 
 %files
+%{_unitdir}/node_exporter.service
+%config(noreplace) %{_sysconfdir}/sysconfig/node_exporter
 %license LICENSE
 %doc *.md text_collector_examples
 %{_bindir}/*
@@ -242,7 +251,16 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 getent group node_exporter > /dev/null || groupadd -r node_exporter
 getent passwd node_exporter > /dev/null || \
     useradd -rg node_exporter -d /var/lib/node_exporter -s /sbin/nologin \
-            -c "Prometheus node exporter"
+            -c "Prometheus node exporter" node_exporter
+
+%post
+%systemd_post node_exporter.service
+
+%preun
+%systemd_preun node_exporter.service
+
+%postun
+%systemd_postun
 
 %changelog
 * Thu Mar 09 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc2-4
