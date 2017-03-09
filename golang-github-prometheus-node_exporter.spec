@@ -157,7 +157,7 @@ function _gobuild { go build -a -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -
 %gobuild -o _build/node_exporter %{provider_prefix}
 
 %install
-install -d -p   %{buildroot}%{_bindir} \
+install -d -p   %{buildroot}%{_sbindir} \
                 %{buildroot}%{_defaultdocdir}/node_exporter \
                 %{buildroot}%{_sysconfdir}/sysconfig \
                 %{buildroot}%{_unitdir}
@@ -165,7 +165,7 @@ install -d -p   %{buildroot}%{_bindir} \
 install -d -m 0644 sysconfig.node_exporter %{buildroot}%{_sysconfdir}/sysconfig/node_exporter
 install -d -m 0644 node_exporter.service %{buildroot}%{_unitdir}/node_exporter.service
 
-install -p -m 0755 ./_build/node_exporter %{buildroot}%{_bindir}/node_exporter
+install -p -m 0755 ./_build/node_exporter %{buildroot}%{_sbindir}/node_exporter
 
 # source codes for building projects
 %if 0%{?with_devel}
@@ -245,7 +245,7 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 %config(noreplace) %{_sysconfdir}/sysconfig/node_exporter
 %license LICENSE
 %doc *.md text_collector_examples
-%{_bindir}/*
+%{_sbindir}/*
 
 %pre
 getent group node_exporter > /dev/null || groupadd -r node_exporter
