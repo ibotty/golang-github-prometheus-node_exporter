@@ -94,6 +94,8 @@ Requires:      golang(golang.org/x/sys/unix)
 Provides:      golang(%{import_path}/collector) = %{version}-%{release}
 Provides:      golang(%{import_path}/collector/ganglia) = %{version}-%{release}
 
+Provides:      node_exporter = %{version}-%{release}
+
 %description devel
 %{summary}
 
