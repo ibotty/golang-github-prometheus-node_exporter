@@ -41,12 +41,13 @@
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           golang-%{provider}-%{project}-%{repo}
-Version:        0.14.0_rc2
-Release:        6%{?dist}
+Version:        0.14.0
+Release:        1%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
-Source0:        https://%{provider_prefix}/archive/%{commit}/%{repo}-%{shortcommit}.tar.gz
+#Source0:        https://%{provider_prefix}/archive/%{commit}/%{repo}-%{shortcommit}.tar.gz
+Source0:        https://%{provider_prefix}/archive/v%{version}.tar.gz
 Source1:        sysconfig.node_exporter
 Source2:        node_exporter.service
 
@@ -132,7 +133,7 @@ providing packages with %{import_path} prefix.
 %endif
 
 %prep
-%setup -q -n %{repo}-%{commit}
+%setup -q -n %{repo}-%{version}
 
 %build
 mkdir -p _build/src/%{provider}.%{provider_tld}/%{project}
@@ -265,6 +266,9 @@ chown node_exporter /var/lib/node_exporter/textfile
 %systemd_postun
 
 %changelog
+* Tue Mar 21 2017 Tobias Florek <tob@butter.sh> 0.14.0-1
+- Upgrade to stable 0.14.0
+
 * Thu Mar 09 2017 Tobias Florek <tob@butter.sh> 0.14.0_rc2-6
 - add textfile directory (tob@butter.sh)
 - move node_exporter to sbin (tob@butter.sh)
