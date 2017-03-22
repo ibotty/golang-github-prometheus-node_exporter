@@ -253,8 +253,8 @@ getent group node_exporter > /dev/null || groupadd -r node_exporter
 getent passwd node_exporter > /dev/null || \
     useradd -rg node_exporter -d /var/lib/node_exporter -s /sbin/nologin \
             -c "Prometheus node exporter" node_exporter
-mkdir -p /var/lib/node_exporter/textfile
-chown node_exporter /var/lib/node_exporter/textfile
+mkdir -p /var/lib/node_exporter/textfile_exporter
+chown node_exporter /var/lib/node_exporter/textfile_exporter
 
 %post
 %systemd_post node_exporter.service
