@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.14.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -266,6 +266,9 @@ chown node_exporter /var/lib/node_exporter/textfile_exporter
 %systemd_postun
 
 %changelog
+* Wed Mar 22 2017 Tobias Florek <tob@butter.sh> 0.14.0-4
+- rename textfile dir according to upstream preference (tob@butter.sh)
+
 * Wed Mar 22 2017 Tobias Florek <tob@butter.sh> 0.14.0-3
 - really fix sysconfig and systemd file (tob@butter.sh)
 
