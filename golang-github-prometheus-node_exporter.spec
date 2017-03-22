@@ -51,7 +51,7 @@ Source0:        https://%{provider_prefix}/archive/v%{version}.tar.gz
 Source1:        sysconfig.node_exporter
 Source2:        node_exporter.service
 
-Provides:      node_exporter = %{version}-%{release}
+Provides:       node_exporter = %{version}-%{release}
 
 BuildRequires:  systemd
 # e.g. el6 has ppc64 arch without gcc-go, so EA tag is required
