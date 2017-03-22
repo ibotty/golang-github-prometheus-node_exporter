@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.14.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -266,6 +266,9 @@ chown node_exporter /var/lib/node_exporter/textfile
 %systemd_postun
 
 %changelog
+* Wed Mar 22 2017 Tobias Florek <tob@butter.sh> 0.14.0-2
+- fix installing sysconfig file and systemd unit (tob@butter.sh)
+
 * Tue Mar 21 2017 Tobias Florek <tob@butter.sh> 0.14.0-1
 - Upgrade to stable 0.14.0
 
