@@ -163,8 +163,8 @@ install -d -p   %{buildroot}%{_sbindir} \
                 %{buildroot}%{_sysconfdir}/sysconfig \
                 %{buildroot}%{_unitdir}
 
-install -d -m 0644 sysconfig.node_exporter %{buildroot}%{_sysconfdir}/sysconfig/node_exporter
-install -d -m 0644 node_exporter.service %{buildroot}%{_unitdir}/node_exporter.service
+install -p -m 0644 sysconfig.node_exporter %{buildroot}%{_sysconfdir}/sysconfig/node_exporter
+install -p -m 0644 node_exporter.service %{buildroot}%{_unitdir}/node_exporter.service
 
 install -p -m 0755 ./_build/node_exporter %{buildroot}%{_sbindir}/node_exporter
 
