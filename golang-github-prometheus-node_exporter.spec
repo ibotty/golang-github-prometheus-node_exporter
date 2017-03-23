@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.14.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -265,6 +265,9 @@ mkdir -p /var/lib/node_exporter/textfile_collector
 %systemd_postun
 
 %changelog
+* Thu Mar 23 2017 Tobias Florek <tob@butter.sh> 0.14.0-5
+- fix typo in textfile dir (tob@butter.sh)
+
 * Wed Mar 22 2017 Tobias Florek <tob@butter.sh> 0.14.0-4
 - rename textfile dir according to upstream preference (tob@butter.sh)
 
