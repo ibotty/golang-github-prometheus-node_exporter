@@ -37,12 +37,12 @@
 # https://github.com/prometheus/node_exporter
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 %global import_path     %{provider_prefix}
-%global commit          0e60bb8e005c638605e59ac3f307e3d47e891a9f
-%global shortcommit     %(c=%{commit}; echo ${c:0:7})
+#%global commit          0e60bb8e005c638605e59ac3f307e3d47e891a9f
+#%global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           golang-%{provider}-%{project}-%{repo}
-Version:        0.14.0
-Release:        5%{?dist}
+Version:        0.15.2
+Release:        1%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -265,6 +265,9 @@ mkdir -p /var/lib/node_exporter/textfile_collector
 %systemd_postun
 
 %changelog
+* Thu Jan 04 2018 Tobias Florek <tob@butter.sh> - 0.15.2-1
+- new version
+
 * Thu Mar 23 2017 Tobias Florek <tob@butter.sh> 0.14.0-5
 - fix typo in textfile dir (tob@butter.sh)
 
