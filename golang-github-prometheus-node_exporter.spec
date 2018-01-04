@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.15.2
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -265,6 +265,9 @@ mkdir -p /var/lib/node_exporter/textfile_collector
 %systemd_postun
 
 %changelog
+* Thu Jan 04 2018 Tobias Florek <tob@butter.sh> 0.15.2-5
+- resubmit
+
 * Thu Jan 04 2018 Tobias Florek <tob@butter.sh> 0.15.2-4
 - fix tarball (tob@butter.sh)
 
