@@ -155,6 +155,9 @@ function _gobuild { go build -a -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -
 %global gobuild _gobuild
 %endif
 
+# set version information
+export LDFLAGS="-X %{provider_prefix}/vendor/github.com/prometheus/common/version.Version=%{version} -X %{provider_prefix}/vendor/github.com/prometheus/common/version.BuildUser=copr -X %{provider_prefix}/vendor/github.com/prometheus/common/version.BuildDate=$(date '+%Y%m%d-%T')" 
+
 %gobuild -o _build/node_exporter %{provider_prefix}
 
 %install
