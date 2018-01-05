@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.15.2
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -268,6 +268,9 @@ mkdir -p /var/lib/node_exporter/textfile_collector
 %systemd_postun
 
 %changelog
+* Fri Jan 05 2018 Tobias Florek <tob@butter.sh> 0.15.2-6
+- fix missing version string in binary (tob@butter.sh)
+
 * Thu Jan 04 2018 Tobias Florek <tob@butter.sh> 0.15.2-5
 - resubmit
 
