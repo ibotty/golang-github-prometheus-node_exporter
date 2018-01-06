@@ -150,13 +150,13 @@ ln -s ./ ./vendor/src # ./vendor/src -> ./vendor
 export GOPATH=$(pwd)/_build:$(pwd)/vendor:%{gopath}
 %endif
 
-%if ! 0%{?gobuild:1}
-function _gobuild { go build -a -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n')" -v -x "$@"; }
-%global gobuild _gobuild
-%endif
-
 # set version information
 export LDFLAGS="-X %{provider_prefix}/vendor/github.com/prometheus/common/version.Version=%{version} -X %{provider_prefix}/vendor/github.com/prometheus/common/version.BuildUser=copr -X %{provider_prefix}/vendor/github.com/prometheus/common/version.BuildDate=$(date '+%Y%m%d-%T')" 
+
+%if ! 0%{?gobuild:1}
+function _gobuild { go build -a -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') $LDFLAGS" -v -x "$@"; }
+%global gobuild _gobuild
+%endif
 
 %gobuild -o _build/node_exporter %{provider_prefix}
 
