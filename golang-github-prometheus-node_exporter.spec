@@ -51,6 +51,7 @@ Source0:        https://%{provider_prefix}/archive/v%{version}.tar.gz
 Source1:        sysconfig.node_exporter
 Source2:        node_exporter.service
 Source3:        node_exporter_textfile_wrapper.sh
+Source4:        textfile_collectors_README
 
 Provides:       node_exporter = %{version}-%{release}
 
