@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.15.2
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -268,6 +268,9 @@ mkdir -p /var/lib/node_exporter/textfile_collector
 %systemd_postun
 
 %changelog
+* Sun Jan 07 2018 Tobias Florek <tob@butter.sh> 0.15.2-8
+- fix default sysconfig option (tob@butter.sh)
+
 * Sat Jan 06 2018 Tobias Florek <tob@butter.sh> 0.15.2-7
 - fix version strings also on el7 (tob@butter.sh)
 
