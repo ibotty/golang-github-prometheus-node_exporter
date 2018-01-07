@@ -1,0 +1,13 @@
+Collectors to run with cronjobs
+===============================
+
+This is a place for textfile collectors for node_exporter.
+See /usr/share/doc/golang-github-prometheus-node_exporter/text_collector_examples for included examples.
+
+You can use /usr/sbin/node_exporter_textfile_wrapper to simplify using them.
+
+Example:
+
+* * * * * /usr/sbin/node_exporter_textfile_wrapper smartmon.sh
+
+will minutely execute smartmon.sh in the examples dir and write the output to the expected path.
