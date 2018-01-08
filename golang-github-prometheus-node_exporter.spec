@@ -166,7 +166,7 @@ function _gobuild { go build -a -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -
 install -d -p   %{buildroot}%{_sbindir} \
                 %{buildroot}%{_defaultdocdir}/node_exporter \
                 %{buildroot}%{_sysconfdir}/sysconfig \
-                %{buildroot}%{_sysconfdir}/prometheus/text_collectors \
+                %{buildroot}%{_sysconfdir}/prometheus/node_exporter/text_collectors \
                 %{buildroot}%{_unitdir}
 
 install -p -m 0644 %{_sourcedir}/textfile_collectors_README %{buildroot}%{_sysconfdir}/prometheus/node_exporter/text_collectors/README
