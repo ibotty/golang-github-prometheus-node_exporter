@@ -251,6 +251,7 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 %files
 %{_unitdir}/node_exporter.service
 %config(noreplace) %{_sysconfdir}/sysconfig/node_exporter
+%config %{_sysconfdir}/prometheus/node_exporter/text_collectors/README
 %license LICENSE
 %doc *.md text_collector_examples
 %{_sbindir}/*
