@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.15.2
-Release:        12%{?dist}
+Release:        13%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -275,6 +275,9 @@ chmod 751 /var/lib/node_exporter/textfile_collector
 %systemd_postun
 
 %changelog
+* Mon Jan 08 2018 Tobias Florek <tob@butter.sh> 0.15.2-13
+- textfile_wrapper: set permissions for generated files (tob@butter.sh)
+
 * Mon Jan 08 2018 Tobias Florek <tob@butter.sh> 0.15.2-12
 - also include README in the rpm (tob@butter.sh)
 
