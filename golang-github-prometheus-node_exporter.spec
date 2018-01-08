@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.15.2
-Release:        11%{?dist}
+Release:        12%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -273,6 +273,9 @@ mkdir -p /var/lib/node_exporter/textfile_collector
 %systemd_postun
 
 %changelog
+* Mon Jan 08 2018 Tobias Florek <tob@butter.sh> 0.15.2-12
+- also include README in the rpm (tob@butter.sh)
+
 * Mon Jan 08 2018 Tobias Florek <tob@butter.sh> 0.15.2-11
 - fix directory name typo (tob@butter.sh)
 
