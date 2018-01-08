@@ -33,6 +33,8 @@ realout="/var/lib/node_exporter/textfile_collector/$outname.prom"
 
 main() {
     $script > "$tmpout"
+    chmod 640 "$tmpout"
+    chgrp node_exporter "$tmpout" || chmod a+r "$tmpout"
     mv "$tmpout" "$realout"
 }
 

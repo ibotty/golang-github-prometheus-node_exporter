@@ -262,6 +262,8 @@ getent passwd node_exporter > /dev/null || \
     useradd -rg node_exporter -d /var/lib/node_exporter -s /sbin/nologin \
             -c "Prometheus node exporter" node_exporter
 mkdir -p /var/lib/node_exporter/textfile_collector
+chgrp node_exporter /var/lib/node_exporter/textfile_collector
+chmod 751 /var/lib/node_exporter/textfile_collector
 
 %post
 %systemd_post node_exporter.service
