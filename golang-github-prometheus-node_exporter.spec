@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.16.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -275,6 +275,9 @@ chmod 751 /var/lib/node_exporter/textfile_collector
 %systemd_postun
 
 %changelog
+* Wed May 16 2018 Tobias Florek <tob@butter.sh> 0.16.0-2
+- 
+
 * Wed May 16 2018 Tobias Florek <tob@butter.sh> 0.16.0-1
 - bump to 0.16.0 (tob@butter.sh)
 
