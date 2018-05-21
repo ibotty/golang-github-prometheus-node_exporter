@@ -55,7 +55,10 @@ Source4:        textfile_collectors_README
 
 Provides:       node_exporter = %{version}-%{release}
 
+%if 0%{?centos} != 6
 BuildRequires:  systemd
+%endif
+
 # e.g. el6 has ppc64 arch without gcc-go, so EA tag is required
 ExclusiveArch:  %{?go_arches:%{go_arches}}%{!?go_arches:%{ix86} x86_64 aarch64 %{arm}}
 # If go_compiler is not set to 1, there is no virtual provide. Use golang instead.
@@ -166,12 +169,17 @@ function _gobuild { go build -a -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -
 install -d -p   %{buildroot}%{_sbindir} \
                 %{buildroot}%{_defaultdocdir}/node_exporter \
                 %{buildroot}%{_sysconfdir}/sysconfig \
-                %{buildroot}%{_sysconfdir}/prometheus/node_exporter/text_collectors \
-                %{buildroot}%{_unitdir}
+                %{buildroot}%{_sysconfdir}/prometheus/node_exporter/text_collectors
+
+%if 0%{?centos} != 6
+install -d -p   %{buildroot}%{_unitdir}
+%endif
 
 install -p -m 0644 %{_sourcedir}/textfile_collectors_README %{buildroot}%{_sysconfdir}/prometheus/node_exporter/text_collectors/README
 install -p -m 0644 %{_sourcedir}/sysconfig.node_exporter %{buildroot}%{_sysconfdir}/sysconfig/node_exporter
+%if 0%{?centos} != 6
 install -p -m 0644 %{_sourcedir}/node_exporter.service %{buildroot}%{_unitdir}/node_exporter.service
+%endif
 install -p -m 0755 %{_sourcedir}/node_exporter_textfile_wrapper.sh %{buildroot}%{_sbindir}/node_exporter_textfile_wrapper
 install -p -m 0755 ./_build/node_exporter %{buildroot}%{_sbindir}/node_exporter
 
@@ -249,7 +257,9 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 %endif
 
 %files
+%if 0%{?centos} != 6
 %{_unitdir}/node_exporter.service
+%endif
 %config(noreplace) %{_sysconfdir}/sysconfig/node_exporter
 %config %{_sysconfdir}/prometheus/node_exporter/text_collectors/README
 %license LICENSE
@@ -266,13 +276,19 @@ chgrp node_exporter /var/lib/node_exporter/textfile_collector
 chmod 751 /var/lib/node_exporter/textfile_collector
 
 %post
+%if 0%{?centos} != 6
 %systemd_post node_exporter.service
+%endif
 
 %preun
+%if 0%{?centos} != 6
 %systemd_preun node_exporter.service
+%endif
 
 %postun
+%if 0%{?centos} != 6
 %systemd_postun
+%endif
 
 %changelog
 * Mon May 21 2018 Tobias Florek <tob@butter.sh> 0.16.0-3
