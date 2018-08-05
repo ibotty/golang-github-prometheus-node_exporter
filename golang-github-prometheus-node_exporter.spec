@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.16.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -291,6 +291,9 @@ chmod 751 /var/lib/node_exporter/textfile_collector
 %endif
 
 %changelog
+* Sun Aug 05 2018 Tobias Florek <tob@butter.sh> 0.16.0-5
+- Configure systemd to restart node_exporter.service (evan@eklitzke.org)
+
 * Mon May 21 2018 Tobias Florek <tob@butter.sh> 0.16.0-4
 - don't require systemd on centos6 (tob@butter.sh)
 
