@@ -41,8 +41,8 @@
 #%global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           golang-%{provider}-%{project}-%{repo}
-Version:        0.16.0
-Release:        5%{?dist}
+Version:        0.17.0
+Release:        6%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -291,6 +291,9 @@ chmod 751 /var/lib/node_exporter/textfile_collector
 %endif
 
 %changelog
+* Tue Dec 04 2018 Tobias Florek <tob@butter.sh> 0.17.0-6
+- bump version to v0.17.0 (tob@butter.sh)
+
 * Sun Aug 05 2018 Tobias Florek <tob@butter.sh> 0.16.0-5
 - Configure systemd to restart node_exporter.service (evan@eklitzke.org)
 
