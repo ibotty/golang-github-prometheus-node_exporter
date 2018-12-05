@@ -55,7 +55,7 @@ Source4:        textfile_collectors_README
 
 Provides:       node_exporter = %{version}-%{release}
 
-%if 0%{?centos} != 6
+%if 0%{?rhel} != 6
 BuildRequires:  systemd
 %endif
 
@@ -171,13 +171,13 @@ install -d -p   %{buildroot}%{_sbindir} \
                 %{buildroot}%{_sysconfdir}/sysconfig \
                 %{buildroot}%{_sysconfdir}/prometheus/node_exporter/text_collectors
 
-%if 0%{?centos} != 6
+%if 0%{?rhel} != 6
 install -d -p   %{buildroot}%{_unitdir}
 %endif
 
 install -p -m 0644 %{_sourcedir}/textfile_collectors_README %{buildroot}%{_sysconfdir}/prometheus/node_exporter/text_collectors/README
 install -p -m 0644 %{_sourcedir}/sysconfig.node_exporter %{buildroot}%{_sysconfdir}/sysconfig/node_exporter
-%if 0%{?centos} != 6
+%if 0%{?rhel} != 6
 install -p -m 0644 %{_sourcedir}/node_exporter.service %{buildroot}%{_unitdir}/node_exporter.service
 %endif
 install -p -m 0755 %{_sourcedir}/node_exporter_textfile_wrapper.sh %{buildroot}%{_sbindir}/node_exporter_textfile_wrapper
@@ -257,7 +257,7 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 %endif
 
 %files
-%if 0%{?centos} != 6
+%if 0%{?rhel} != 6
 %{_unitdir}/node_exporter.service
 %endif
 %config(noreplace) %{_sysconfdir}/sysconfig/node_exporter
@@ -276,17 +276,17 @@ chgrp node_exporter /var/lib/node_exporter/textfile_collector
 chmod 751 /var/lib/node_exporter/textfile_collector
 
 %post
-%if 0%{?centos} != 6
+%if 0%{?rhel} != 6
 %systemd_post node_exporter.service
 %endif
 
 %preun
-%if 0%{?centos} != 6
+%if 0%{?rhel} != 6
 %systemd_preun node_exporter.service
 %endif
 
 %postun
-%if 0%{?centos} != 6
+%if 0%{?rhel} != 6
 %systemd_postun
 %endif
 
