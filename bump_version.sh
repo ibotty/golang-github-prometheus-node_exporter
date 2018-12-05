@@ -17,4 +17,4 @@ git add "v$VERSION.tar.gz"
 echo "commit changes"
 git commit -m "bump version to v$VERSION"
 
-echo "Now what's left is tito tag and git push --follow-tags origin"
+echo "Now what's left is tito tag and git push --tags origin"
