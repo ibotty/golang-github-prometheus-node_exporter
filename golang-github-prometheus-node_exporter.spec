@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.17.0
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -291,6 +291,17 @@ chmod 771 /var/lib/node_exporter/textfile_collector
 %endif
 
 %changelog
+* Tue Jan 22 2019 Tobias Florek <tob@butter.sh> 0.17.0-7
+- hopefully fix setting version (tob@butter.sh)
+- Make text collector folder writable for the group
+  (mohsen0@users.noreply.github.com)
+- Revert "use go-toolkit-7 scl on rhel7" (tob@butter.sh)
+- use go-toolkit-7 scl on rhel7 (tob@butter.sh)
+- use rhel macro instead of centos to allow rhel builds (tob@butter.sh)
+- also reset release no when bumping version (tob@butter.sh)
+- fix documentation re tito (tob@butter.sh)
+- add script to help in making new releases (tob@butter.sh)
+
 * Tue Dec 04 2018 Tobias Florek <tob@butter.sh> 0.17.0-6
 - bump version to v0.17.0 (tob@butter.sh)
 
