@@ -273,7 +273,7 @@ getent passwd node_exporter > /dev/null || \
             -c "Prometheus node exporter" node_exporter
 mkdir -p /var/lib/node_exporter/textfile_collector
 chgrp node_exporter /var/lib/node_exporter/textfile_collector
-chmod 751 /var/lib/node_exporter/textfile_collector
+chmod 771 /var/lib/node_exporter/textfile_collector
 
 %post
 %if 0%{?rhel} != 6
