@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.17.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -294,6 +294,10 @@ chmod 771 /var/lib/node_exporter/textfile_collector
 %endif
 
 %changelog
+* Wed Jan 23 2019 Tobias Florek <tob@butter.sh> 0.17.0-8
+- clean go modcache to work around checksum errors (tob@butter.sh)
+- add -mod=vendor to go build flags (tob@butter.sh)
+
 * Tue Jan 22 2019 Tobias Florek <tob@butter.sh> 0.17.0-7
 - hopefully fix setting version (tob@butter.sh)
 - Make text collector folder writable for the group
