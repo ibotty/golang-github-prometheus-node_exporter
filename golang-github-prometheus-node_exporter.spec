@@ -53,6 +53,9 @@ Source2:        node_exporter.service
 Source3:        node_exporter_textfile_wrapper.sh
 Source4:        textfile_collectors_README
 
+# from https://github.com/prometheus/node_exporter/commit/a18d7d44d1aa762265af6c61985652b2df6cfce7.patch
+Patch0:         a18d7d44d1aa762265af6c61985652b2df6cfce7.patch
+
 Provides:       node_exporter = %{version}-%{release}
 
 %if 0%{?rhel} != 6
@@ -139,6 +142,7 @@ providing packages with %{import_path} prefix.
 
 %prep
 %setup -q -n %{repo}-%{version}
+%patch0 -p1
 
 %build
 mkdir -p _build/src/%{provider}.%{provider_tld}/%{project}
