@@ -140,6 +140,9 @@ providing packages with %{import_path} prefix.
 %prep
 %setup -q -n %{repo}-%{version}
 
+# clean go modcache to hopefully work around checksum errors
+go clean -modcache
+
 %build
 mkdir -p _build/src/%{provider}.%{provider_tld}/%{project}
 ln -s $(pwd) _build/src/%{provider_prefix}
