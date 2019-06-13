@@ -140,11 +140,6 @@ providing packages with %{import_path} prefix.
 %prep
 %setup -q -n %{repo}-%{version}
 
-# only apply patch for newer go
-%if ! (0%{?rhel} && 0%{?rhel} < 8)
-%patch0 -p1
-%endif
-
 %build
 mkdir -p _build/src/%{provider}.%{provider_tld}/%{project}
 ln -s $(pwd) _build/src/%{provider_prefix}
