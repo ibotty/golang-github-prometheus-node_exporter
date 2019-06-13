@@ -72,6 +72,7 @@ BuildRequires:  %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 Summary:       %{summary}
 BuildArch:     noarch
 
+BuildRequires: git
 %if 0%{?with_check} && ! 0%{?with_bundled}
 BuildRequires: golang(github.com/beevik/ntp)
 BuildRequires: golang(github.com/coreos/go-systemd/dbus)
