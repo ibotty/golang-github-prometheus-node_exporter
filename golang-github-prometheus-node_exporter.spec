@@ -288,7 +288,7 @@ chmod 771 /var/lib/node_exporter/textfile_collector
 
 %postun
 %if 0%{?rhel} != 6
-%systemd_postun
+%systemd_postun node_exporter.service
 %endif
 
 %changelog
