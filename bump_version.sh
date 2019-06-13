@@ -10,7 +10,7 @@ curl -sSLO "https://github.com/prometheus/node_exporter/archive/v${VERSION}.tar.
 echo "change version in spec file"
 sed -i \
     -e '/^Version:/s/[0-9.]*$/'"$VERSION"'/' \
-    -e '/^Release:/s/[0-9]\+/1/' \
+    -e '/^Release:/s/[0-9]\+/0/' \
     golang-github-prometheus-node_exporter.spec
 
 echo "remove old source tarball and add new one"
