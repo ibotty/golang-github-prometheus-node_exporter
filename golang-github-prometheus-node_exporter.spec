@@ -42,7 +42,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.18.1
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -292,6 +292,9 @@ chmod 771 /var/lib/node_exporter/textfile_collector
 %endif
 
 %changelog
+* Thu Jun 13 2019 Tobias Florek <tob@butter.sh> 0.18.1-6
+- add missing argument to systemd_postun for f31+ (tob@butter.sh)
+
 * Thu Jun 13 2019 Tobias Florek <tob@butter.sh> 0.18.1-5
 - buildrequire git (tob@butter.sh)
 
