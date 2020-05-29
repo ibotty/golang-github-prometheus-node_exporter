@@ -41,8 +41,8 @@
 #%global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           golang-%{provider}-%{project}-%{repo}
-Version:        0.18.1
-Release:        6%{?dist}
+Version:        1.0.0
+Release:        0%{?dist}
 Summary:        Exporter for machine metrics
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
